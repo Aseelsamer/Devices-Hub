@@ -46,17 +46,16 @@ var myForm=document.getElementById('myForm');
 myForm.addEventListener('submit',onClickRender);
 
 function onClickRender(e){
-  e.preventDefault();
-//   renderTableHeader();
+//   e.preventDefault();
+  //   renderTableHeader();
   //   renderTable();
-  var name= e.target.ItemName.value;
-  var category=e.target.Category.value;
-  var quantity= e.target.Quantity.value;
-  var unit= Math.floor(Math.random()* 7) +1 ;
+  var name= document.getElementById('ItemName').value;
+  var category=document.getElementById('Category').value;
+  var quantity= document.getElementById('Quantity').value;
+  var unit= Math.floor(Math.random()* 750) +1 ;
   var deviceItem= new Device(name,category,quantity,unit);
+  console.log(deviceItem);
   localStorage.setItem('deviceList',JSON.stringify(Device.all));
-  var deviceTable = document.getElementById('tableSection');
-  deviceTable.textContent='';
   renderTable();
   var myForm=document.getElementById('myForm');
 
@@ -74,7 +73,7 @@ function renderTable(){
 
     var td1=document.createElement('td');
     trE1.appendChild(td1);
-    td1.textContent=Device.all[i].dName;
+    td1.textContent=Device.all[i].name;
 
     var td2=document.createElement('td');
     trE1.appendChild(td2);
@@ -87,6 +86,7 @@ function renderTable(){
     var td4=document.createElement('td');
     trE1.appendChild(td4);
     td4.textContent=Device.all[i].category;
+
 
     tableBody.appendChild(trE1);
 
